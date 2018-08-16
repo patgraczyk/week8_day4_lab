@@ -10,10 +10,12 @@ public class Runner {
 
     public static void main(String[] args) {
 
-        Manager manager1 = new Manager("Sally", 345, 45000, 10000);
-        Manager manager2 = new Manager("Vicky", 222, 50000, 10000);
+        Manager manager1 = new Manager("Sally", 345, 45000, 1000);
+        Manager manager2 = new Manager("Vicky", 222, 50000, 12000);
+        Manager manager3 = new Manager("Jane", 345, 34000, 85000);
         DBHelper.save(manager1);
         DBHelper.save(manager2);
+        DBHelper.save(manager3);
 
         Department department1 = new Department("The best one", manager1);
         Department department2 = new Department("The only", manager2);
@@ -32,5 +34,6 @@ public class Runner {
 
         Department departmentFound = DBManager.getDepartmentForManager(manager1);
 
+        Double budgetAvg = DBManager.returnAverageBudget();
     }
 }

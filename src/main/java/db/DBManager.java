@@ -6,6 +6,7 @@ import models.Manager;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 
 import java.util.List;
@@ -44,4 +45,19 @@ public class DBManager {
         }
         return results;
     }
-}
+
+    public static Double returnAverageBudget(){
+        session = HibernateUtil.getSessionFactory().openSession();
+        Double results = null;
+        try {
+            Criteria cr =  session.createCriteria(Manager.class);
+            cr.setProjection(Projections.avg("budget"));
+            results = (Double)cr.uniqueResult();
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+        } finally {
+            session.close();
+        }
+            return results;
+        }
+    }
