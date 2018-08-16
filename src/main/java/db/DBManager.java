@@ -6,6 +6,7 @@ import models.Manager;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 
@@ -60,4 +61,23 @@ public class DBManager {
         }
             return results;
         }
+
+     public static List<Manager> orderManagersByBudget(){
+        session = HibernateUtil.getSessionFactory().openSession();
+        List<Manager> results = null;
+        try {
+            Criteria cr = session.createCriteria(Manager.class);
+            cr.addOrder(Order.asc("budget"));
+            results = cr.list();
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return results;
+     }
+
+
+
+
     }

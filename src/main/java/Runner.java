@@ -35,5 +35,7 @@ public class Runner {
         Department departmentFound = DBManager.getDepartmentForManager(manager1);
 
         Double budgetAvg = DBManager.returnAverageBudget();
+
+        List<Manager> managersOrderedBy = DBManager.orderManagersByBudget();
     }
 }
