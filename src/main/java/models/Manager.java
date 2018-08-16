@@ -11,13 +11,12 @@ import java.util.List;
 public class Manager extends Employee {
 
     private int budget;
-    private String deparment;
+    private Department department;
     private List<Admin> admins;
 
-    public Manager(String name, int nin, int salary, int budget, String deparment) {
+    public Manager(String name, int nin, int salary, int budget) {
         super(name, nin, salary);
         this.budget = budget;
-        this.deparment = deparment;
         this.admins = new ArrayList<Admin>();
     }
 
@@ -34,14 +33,6 @@ public class Manager extends Employee {
         this.budget = budget;
     }
 
-    @Column(name = "department")
-    public String getDeparment() {
-        return deparment;
-    }
-
-    public void setDeparment(String deparment) {
-        this.deparment = deparment;
-    }
 
     @OneToMany(mappedBy = "manager", fetch = FetchType.LAZY)
     public List<Admin> getAdmins() {
@@ -50,5 +41,15 @@ public class Manager extends Employee {
 
     public void setAdmins(List<Admin> admins) {
         this.admins = admins;
+    }
+
+
+    @OneToOne(mappedBy = "manager", fetch = FetchType.LAZY)
+    public Department getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(Department department) {
+        this.department = department;
     }
 }
