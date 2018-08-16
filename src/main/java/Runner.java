@@ -1,3 +1,4 @@
+import db.DBAdmin;
 import db.DBHelper;
 import db.DBManager;
 import models.Admin;
@@ -32,10 +33,14 @@ public class Runner {
 
         List<Admin> adminsOfManagers = DBManager.getAdminsForManager(manager1);
 
+        Manager manager = DBAdmin.getManagerOfAdmin(admin);
+
         Department departmentFound = DBManager.getDepartmentForManager(manager1);
 
         Double budgetAvg = DBManager.returnAverageBudget();
 
         List<Manager> managersOrderedBy = DBManager.orderManagersByBudget();
+
+
     }
 }
